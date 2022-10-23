@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "raspi": "^6.0.1",
+    "raspi-serial": "^6.0.0"
+  }
+}
