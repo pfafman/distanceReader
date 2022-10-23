@@ -34,7 +34,7 @@ raspi.init(() => {
                     let distance = data[1]*256 + data[2];
                     ave += distance;
                     aveCnt++;
-                    if (aveCnt > 10) {
+                    if (aveCnt > 20) {
                         ave /= aveCnt;
                         console.log("Distance is", ave*0.0393701, '"');
                         ave = 0;
