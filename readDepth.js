@@ -5,19 +5,18 @@ const Serial = require('raspi-serial').Serial;
 
 let data = [];
 let i = 0;
+let ave = 0;
+let aveCnt = 0;
 
 checkSum = (data) => {
     return (data[0] + data[1] + data[2]) & 0x00ff
 }
 
-delay = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
-raspi.init(async () => {
+raspi.init(() => {
 
     var serial = new Serial({portId: "/dev/serial0", baudRate: 9600});
-    serial.open(async () => {
+    serial.open(() => {
         serial.on('data', async (byte) => {
             i++;
             data.push(byte[0])
@@ -33,12 +32,18 @@ raspi.init(async () => {
                     console.log("Checksum Error", sum, data);
                 } else {
                     let distance = data[1]*256 + data[2];
-                    console.log("Distance is", distance*0.0393701, '"');
+                    ave += distance;
+                    aveCnt++;
+                    if (aveCnt > 6) {
+                        ave /= aveCnt;
+                        console.log("Distance is", ave*0.0393701, '"');
+                        ave = 0;
+                        aveCnt = 0;
+                    }
                 }
                 i = 0;
                 data = [];
 
-                await delay(1000) /// waiting 1 second.
             }
         });
     });
