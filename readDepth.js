@@ -10,7 +10,9 @@ checkSum = (data) => {
     return (data[0] + data[1] + data[2]) & 0x00ff
 }
 
-
+const delay = (ms) => {
+    new Promise(resolve => setTimeout(resolve, ms));
+}
 
 raspi.init(() => {
 
@@ -35,6 +37,8 @@ raspi.init(() => {
                 }
                 i = 0;
                 data = [];
+
+                await delay(1000) /// waiting 1 second.
             }
         });
     });
