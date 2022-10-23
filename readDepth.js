@@ -36,7 +36,7 @@ raspi.init(() => {
                     aveCnt++;
                     if (aveCnt > 20) {
                         ave /= aveCnt;
-                        console.log("Distance is", ave*0.0393701, '"');
+                        console.log("Distance is", ave*0.0393701);
                         ave = 0;
                         aveCnt = 0;
                     }
