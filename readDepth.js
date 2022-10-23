@@ -14,11 +14,11 @@ delay = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async raspi.init(() => {
+raspi.init(async () => {
 
     var serial = new Serial({portId: "/dev/serial0", baudRate: 9600});
-    async serial.open(() => {
-        async serial.on('data', (byte) => {
+    serial.open(async () => {
+        serial.on('data', async (byte) => {
             i++;
             data.push(byte[0])
             //console.log("Data:[", byte.length, ']:',i, ':', byte[0]);
