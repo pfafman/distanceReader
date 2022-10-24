@@ -29,7 +29,7 @@ postData = (data) => {
          }
     };
 
-    var req = https.request(options, (res) => {
+    var req = http.request(options, (res) => {
       console.log('statusCode:', res.statusCode);
       console.log('headers:', res.headers);
 
@@ -68,7 +68,7 @@ raspi.init(() => {
                     let distance = data[1]*256 + data[2];
                     ave += distance;
                     aveCnt++;
-                    if (aveCnt > 100) {
+                    if (aveCnt > 20) {
                         ave /= aveCnt;
                         console.log("Distance is", ave*0.0393701);
                         ave = 0;
