@@ -42,6 +42,7 @@ postData = (data) => {
       console.error(e);
     });
 
+    console.log("Post", postData);
     req.write(postData);
     req.end();
 }
