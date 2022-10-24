@@ -16,7 +16,7 @@ checkSum = (data) => {
 
 postData = (data) => {
 
-    var postData = JSON.stringify(data0);
+    var postData = JSON.stringify(data);
 
     var options = {
       hostname: 'zero.local',
