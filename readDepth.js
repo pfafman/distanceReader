@@ -31,7 +31,7 @@ postData = (data) => {
 
     var req = http.request(options, (res) => {
       console.log('statusCode:', res.statusCode);
-      console.log('headers:', res.headers);
+      //console.log('headers:', res.headers);
 
       res.on('data', (d) => {
         process.stdout.write(d);
