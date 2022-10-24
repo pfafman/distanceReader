@@ -70,11 +70,12 @@ raspi.init(() => {
                     ave += distance;
                     aveCnt++;
                     if (aveCnt > 20) {
-                        ave /= aveCnt;
-                        console.log("Distance is", ave*0.0393701);
+                        ave /= aveCnt*0.0393701;
+                        console.log("Distance is", ave);
+                        postData(ave);
                         ave = 0;
                         aveCnt = 0;
-                        postData({'depth': ave});
+                        
                     }
                 }
                 i = 0;
