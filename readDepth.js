@@ -73,7 +73,7 @@ raspi.init(() => {
                         ave /= aveCnt;
                         ave *= 0.0393701;
                         console.log("Distance is", ave);
-                        postData(ave);
+                        postData({'depth': ave});
                         ave = 0;
                         aveCnt = 0;
                         
