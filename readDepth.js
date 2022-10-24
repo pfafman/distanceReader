@@ -16,7 +16,7 @@ checkSum = (data) => {
 
 postData = (data) => {
 
-    var postData = data; //JSON.stringify(data);
+    var postData = JSON.stringify(data);
 
     var options = {
       hostname: 'zero.local',
@@ -24,7 +24,7 @@ postData = (data) => {
       path: '/api/insertDepth/',
       method: 'POST',
       headers: {
-           'Content-Type': 'application/x-www-form-urlencoded',
+           'Content-Type': 'application/json',
            'Content-Length': postData.length
          }
     };
@@ -43,7 +43,7 @@ postData = (data) => {
     });
 
     console.log("Post", postData);
-    req.write(postData);
+    req.write(postData,'utf8');
     req.end();
 }
 
