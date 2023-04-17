@@ -19,8 +19,8 @@ postData = (data) => {
     var postData = JSON.stringify(data);
 
     var options = {
-      hostname: 'zero.local',
-      port: 3000,
+      hostname: 'kyoteridge.pfafman.com',
+      port: 80,
       path: '/api/insertDepth/',
       method: 'POST',
       headers: {
@@ -31,7 +31,6 @@ postData = (data) => {
 
     var req = http.request(options, (res) => {
       console.log('statusCode:', res.statusCode);
-      //console.log('headers:', res.headers);
 
       res.on('data', (d) => {
         process.stdout.write(d);
