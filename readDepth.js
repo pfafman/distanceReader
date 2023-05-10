@@ -49,8 +49,15 @@ postData = (data) => {
 
 raspi.init(() => {
 
+    console.log("Raspi Init: new Serial");
+
     var serial = new Serial({portId: "/dev/serial0", baudRate: 9600});
+    
+    console.log("Raspi Init: new Serial Created");
+
     serial.open(() => {
+        console.log("Serial opened ...");
+        
         serial.on('data', async (byte) => {
             i++;
             data.push(byte[0])
