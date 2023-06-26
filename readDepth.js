@@ -4,7 +4,8 @@ const raspi  = require('raspi');
 const Serial = require('raspi-serial').Serial;
 const http   = require('http');
 
-
+let i = 0;
+let data = [];
 let ave = 0;
 let ave2 = 0;
 let aveCnt = 0;
@@ -111,7 +112,8 @@ raspi.init(() => {
                         }
                     }
                 }
-
+                i = 0;
+                data = [];
             }
         });
     });
