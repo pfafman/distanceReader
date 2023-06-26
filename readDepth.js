@@ -93,10 +93,10 @@ raspi.init(() => {
                     } else {
                         ave += distance;
                         aveCnt++;
-                        if (minValue < distance) {
+                        if (minValue > distance) {
                             minValue = distance;
                         }
-                        if (maxValue > distance) {
+                        if (maxValue < distance) {
                             maxValue = distance;
                         }
                         if (aveCnt > 100) {
