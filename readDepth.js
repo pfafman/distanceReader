@@ -4,14 +4,27 @@ const raspi  = require('raspi');
 const Serial = require('raspi-serial').Serial;
 const http   = require('http');
 
-let data = [];
-let i = 0;
+
 let ave = 0;
+let ave2 = 0;
 let aveCnt = 0;
+let minValue = 100;
+let maxValue = 0;
+
 
 checkSum = (data) => {
     return (data[0] + data[1] + data[2]) & 0x00ff
 }
+
+
+resetData = () => {
+    console.log("resetData");
+    ave = 0;
+    aveCnt = 0;
+    minValue = 100;
+    maxValue = 0;
+}
+
 
 
 postData = (data) => {
@@ -42,6 +55,7 @@ postData = (data) => {
     });
 
     console.log("Post", postData);
+    console.log("");
     req.write(postData,'utf8');
     req.end();
 }
@@ -72,21 +86,31 @@ raspi.init(() => {
                 if (sum != data[3]) {
                     console.log("Checksum Error", sum, data);
                 } else {
-                    let distance = data[1]*256 + data[2];
-                    ave += distance;
-                    aveCnt++;
-                    if (aveCnt > 100) {
-                        ave /= aveCnt;
-                        ave *= 0.0393701;
-                        console.log("Distance is", ave);
-                        postData({'depth': ave});
-                        ave = 0;
-                        aveCnt = 0;
-                        
+                    let distance = 0.0393701 * (data[1]*256 + data[2]);
+                    if ((distance < 0) || (distance > 70)) {
+                        console.log("Bad Value", distance);
+                    } else {
+                        ave += distance;
+                        aveCnt++;
+                        if (minValue < distance) {
+                            minValue = distance;
+                        }
+                        if (maxValue > distance) {
+                            maxValue = distance;
+                        }
+                        if (aveCnt > 100) {
+                            ave /= aveCnt;
+                            if ( ((maxValue - ave) > 1) || ((ave - minValue) > 1) ) {
+                                console.log("Noisy", ave, minValue, maxValue);
+                                resetData();
+                            } else {
+                                console.log("Post distance:", ave);
+                                postData({'depth': ave});
+                                resetData();
+                            }
+                        }
                     }
                 }
-                i = 0;
-                data = [];
 
             }
         });

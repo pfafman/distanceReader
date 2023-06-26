@@ -12,3 +12,4 @@ Read the distance on a raspberry pi from the A02YYUW is an waterproof ultrasoini
 ```
 @reboot sleep 10; /usr/bin/forever start -o /home/pi/depth.log -e /home/pi/depth.log /home/pi/distanceReader/readDepth.js
 ```
+
