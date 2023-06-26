@@ -45,6 +45,7 @@ postData = (data) => {
 
     var req = http.request(options, (res) => {
       console.log('statusCode:', res.statusCode);
+      console.log("");
 
       res.on('data', (d) => {
         process.stdout.write(d);
@@ -55,8 +56,7 @@ postData = (data) => {
       console.error(e);
     });
 
-    console.log("Post", postData);
-    console.log("");
+    console.log("Post Data", postData);
     req.write(postData,'utf8');
     req.end();
 }
@@ -105,7 +105,7 @@ raspi.init(() => {
                                 console.log("Noisy", ave, minValue, maxValue);
                                 resetData();
                             } else {
-                                console.log("Post distance:", ave);
+                                console.log("Post distance:", ave, minValue, maxValue);
                                 postData({'depth': ave});
                                 resetData();
                             }
