@@ -44,8 +44,8 @@ postData = (data) => {
     };
 
     var req = http.request(options, (res) => {
-      console.log('statusCode:', res.statusCode);
-      console.log("");
+      // console.log('statusCode:', res.statusCode);
+      // console.log("");
 
       res.on('data', (d) => {
         process.stdout.write(d);
