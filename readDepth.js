@@ -88,6 +88,7 @@ raspi.init(() => {
                     console.log("Checksum Error", sum, data);
                 } else {
                     let distance = 0.0393701 * (data[1]*256 + data[2]);
+		    //console.log("Distance", distance);
                     if ((distance < 0) || (distance > 70)) {
                         console.log("Bad Value", distance);
                     } else {
