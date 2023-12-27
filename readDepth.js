@@ -56,7 +56,7 @@ postData = (data) => {
       console.error(e);
     });
 
-    console.log("Post Data", data.toFixed(2));
+    console.log("Post Data", data);
     req.write(postData,'utf8');
     req.end();
 }
