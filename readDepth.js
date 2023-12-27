@@ -106,7 +106,8 @@ raspi.init(() => {
                                 console.log("Noisy", ave, minValue, maxValue);
                                 resetData();
                             } else {
-                                console.log("Post distance:", ave, minValue, maxValue);
+                                console.log("");
+                                console.log("Post distance:", ave.toFixed(2), minValue.toFixed(2), maxValue.toFixed(2));
                                 postData({'depth': ave});
                                 resetData();
                             }
