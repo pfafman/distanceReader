@@ -56,7 +56,7 @@ postData = (data) => {
       console.error(e);
     });
 
-    console.log("Post Data", postData);
+    console.log("Post Data", data.toFixed(2));
     req.write(postData,'utf8');
     req.end();
 }
@@ -88,7 +88,7 @@ raspi.init(() => {
                     console.log("Checksum Error", sum, data);
                 } else {
                     let distance = 0.0393701 * (data[1]*256 + data[2]);
-		    //console.log("Distance", distance);
+		            //console.log("Distance", distance);
                     if ((distance < 0) || (distance > 70)) {
                         console.log("Bad Value", distance);
                     } else {
@@ -103,12 +103,12 @@ raspi.init(() => {
                         if (aveCnt > 100) {
                             ave /= aveCnt;
                             if ( ((maxValue - ave) > 1) || ((ave - minValue) > 1) ) {
-                                console.log("Noisy", ave, minValue, maxValue);
+                                console.log("Noisy", ave.toFixed(3), minValue.toFixed(3), maxValue.toFixed(3));
                                 resetData();
                             } else {
                                 console.log("");
                                 console.log("Post distance:", ave.toFixed(2), minValue.toFixed(2), maxValue.toFixed(2));
-                                postData({'depth': ave});
+                                postData({'depth': ave);
                                 resetData();
                             }
                         }
