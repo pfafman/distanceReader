@@ -3,6 +3,7 @@
 const raspi  = require('raspi');
 const Serial = require('raspi-serial').Serial;
 const http   = require('http');
+const gpio = require('onoff').Gpio;
 
 let i = 0;
 let data = [];
@@ -12,6 +13,9 @@ let aveCnt = 0;
 let minValue = 100;
 let maxValue = 0;
 
+const power = new gpio(23, 'out');
+
+power.writeSync(1);
 
 checkSum = (data) => {
     return (data[0] + data[1] + data[2]) & 0x00ff
