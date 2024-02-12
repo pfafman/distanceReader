@@ -112,7 +112,7 @@ raspi.init(() => {
                                 resetData();
                             } else {
                                 console.log("");
-                                console.log("Post distance:", ave.toFixed(2), minValue.toFixed(2), maxValue.toFixed(2));
+                                console.log("Post distance: (", aveCnt, ") ", ave.toFixed(2), minValue.toFixed(2), maxValue.toFixed(2));
                                 postData({'depth': ave});
                                 resetData();
                             }
