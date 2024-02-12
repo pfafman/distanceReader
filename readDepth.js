@@ -15,6 +15,7 @@ let maxValue = 0;
 
 const power = new gpio(23, 'out');
 
+console.log("Turn on Power Line GPIO 23");
 power.writeSync(1);
 
 checkSum = (data) => {
