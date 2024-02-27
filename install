@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Install systemd service for depthReader"
+cp depthReader.service /lib/systemd/system/depthReader.service
+chown root.root /lib/systemd/system/depthReader.service
+
+sudo systemctl enable depthReader.service
