@@ -38,8 +38,8 @@ postData = (data) => {
     var postData = JSON.stringify(data);
 
     var options = {
-      hostname: 'kyoteridge.pfafman.com',
-      port: 80,
+      hostname: 'kyotehut.lan',
+      port: 4000,
       path: '/api/insertDepth/',
       method: 'POST',
       headers: {
@@ -49,7 +49,7 @@ postData = (data) => {
     };
 
     var req = http.request(options, (res) => {
-      // console.log('statusCode:', res.statusCode);
+      console.log('postdata statusCode:', res.statusCode);
       // console.log("");
 
       res.on('data', (d) => {
@@ -58,10 +58,10 @@ postData = (data) => {
     });
 
     req.on('error', (e) => {
-      console.error(e);
+	console.error("postData",e);
     });
 
-    console.log("Post Data", data);
+    console.log("postData", data);
     req.write(postData,'utf8');
     req.end();
 }
