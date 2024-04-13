@@ -53,12 +53,17 @@ postData = (data) => {
       // console.log("");
 
       res.on('data', (d) => {
-        process.stdout.write(d);
+        //console.log(`BODY: ${d}`);
       });
+
+      res.on('end', () => {
+        //console.log('No more data in response.');
+      });
+
     });
 
     req.on('error', (e) => {
-	console.error("postData",e);
+	   console.error("postData",e);
     });
 
     console.log("postData", data);
